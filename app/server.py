@@ -7,7 +7,7 @@ from starlette.middleware.cors import CORSMiddleware
 from starlette.responses import HTMLResponse, JSONResponse
 from starlette.staticfiles import StaticFiles
 
-export_file_url = 'https://drive.google.com/open?id=14h1wdHwfmZZHSEARg6cV6gprsYioQFql'
+export_file_url = 'https://drive.google.com/uc?export=download&id=14h1wdHwfmZZHSEARg6cV6gprsYioQFql'
 export_file_name = 'export.pkl'
 
 thing_to_analyse = 'laptops'
