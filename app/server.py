@@ -1,8 +1,6 @@
 import aiohttp
 import asyncio
 import uvicorn
-from fastai import *
-from fastai.vision import *
 from io import BytesIO
 from starlette.applications import Starlette
 from starlette.middleware.cors import CORSMiddleware
@@ -11,6 +9,8 @@ from starlette.staticfiles import StaticFiles
 
 export_file_url = 'https://drive.google.com/open?id=14h1wdHwfmZZHSEARg6cV6gprsYioQFql'
 export_file_name = 'export.pkl'
+
+thing_to_analyse = 'laptops'
 
 classes = ['dell', 'macbook', 'lenovo']
 path = Path(__file__).parent
@@ -63,6 +63,10 @@ async def analyze(request):
     prediction = learn.predict(img)[0]
     return JSONResponse({'result': str(prediction)})
 
+
+@app.route('/info')
+async def info():
+    return JSONResponse({'name': str(thing_to_analyse)})
 
 if __name__ == '__main__':
     if 'serve' in sys.argv:

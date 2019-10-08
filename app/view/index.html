@@ -3,11 +3,28 @@
   <meta charset='utf-8'>
   <link rel='stylesheet' href='../static/style.css'>
   <script src='../static/client.js'></script>
+  <script>
+    function run() { 
+      var xhr = new XMLHttpRequest();
+      var loc = window.location;
+      xhr.open("POST", `${loc.protocol}//${loc.hostname}:${loc.port}/info`,true);
+      xhr.onerror = function() {
+        alert(xhr.responseText);
+      };
+      xhr.onload = function(e) {
+        if (this.readyState === 4) {
+          var response = JSON.parse(e.target.responseText);
+          el("name").innerHTML = `${response["name"]}`;
+        }
+      };
+    };
+    window.onload = run;
+  </script>
 </head>
 <body>
 <div>
   <div class='center'>
-    <div class='title'>Classify Bear Images 🐻</div>
+    <div class='title'>Classify <label id="name"></label> Images</div>
     <p>
       Use images of <strong>teddy</strong> bears, <strong>black</strong> bears, <strong>grizzly</strong> bears, or
       all three!
